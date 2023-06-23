@@ -9,5 +9,8 @@ export default defineNuxtConfig({
     '~/css/reset.scss',
     '~/css/global.scss',
   ],
+  tailwindcss: {
+    configPath: './tailwind.config.js'
+  },
   devtools: { enabled: true }
 })
