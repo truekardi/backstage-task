@@ -2,7 +2,7 @@
     <div class="container pt-4 md:pt-10">
         <main class="flex justify-center align-center flex-wrap gap-5 md:gap-10 pb-4 md:pb-10">
             <form @submit.prevent="submitForm" class="flex flex-col gap-4 w-80">
-                <UFormGroup v-for="(value, key, index) in product" :key="`product-form-input-${index}`" :name="key" :label="key.replace(/^\w/, char => char.toUpperCase())">
+                <UFormGroup v-for="(value, key, index) in product" :key="`product-form-input-${index}`" :name="key" :label="capitalizeFirstLetter(key)">
                     <UInput label="Title" :placeholder="`Fill in your product ${key} here`" v-model="product[key]"></UInput>
                 </UFormGroup>
                 <UButton class="w-32 mt-4" block :loading="submitButtonLoading" label="Add Product" type="submit" />
@@ -38,6 +38,10 @@ const submitForm = async (): Promise<void> => {
     submitButtonLoading.value = false
   }, 100);
 };
+
+const capitalizeFirstLetter = (input: string): string => {
+    return input.replace(/^\w/, char => char.toUpperCase())
+}
 </script>
 
 <style>
